@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orion Disassembler: Your Essential Hex & RISC-V Toolkit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            color: #1f2937; /* Default dark text for better contrast on light backgrounds */
+        }
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.75rem; /* 12px */
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #4F46E5, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-section {
+            padding-top: 3rem; /* Adjusted padding */
+            padding-bottom: 4rem; /* 64px */
+            position: relative; /* Needed for pseudo-element or child absolute positioning if used for more complex animations */
+            overflow: hidden; /* Ensures animated background doesn't overflow */
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white; /* Text color for hero section to contrast with animated background */
+        }
+
+        /* Keyframes for the animated gradient background */
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero-section h1, .hero-section p {
+             /* Ensure text is readable on the animated background */
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2); /* Subtle text shadow for readability */
+        }
+        /* Override gradient text for hero if needed, or ensure it's still visible */
+        .hero-section .gradient-text {
+             background: linear-gradient(to right, #ffffff, #f0f0f0); /* Lighter gradient for dark BG */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .app-image-container {
+            perspective: 1000px; /* For 3D hover effect */
+        }
+        .app-image {
+            transition: transform 0.3s ease-out;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.1); /* Softer shadow */
+        }
+        .app-image:hover {
+            transform: rotateY(5deg) rotateX(2deg) scale(1.02); /* Subtle 3D hover effect */
+        }
+        .download-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+        }
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+        }
+        .feature-item { /* Base style for feature items */
+            background-color: #fff; /* Ensure features have a solid background */
+            border: 1px solid #e5e7eb; /* Add a light border */
+        }
+        .feature-item:hover {
+            background-color: #f9fafb; /* Slightly different hover for light mode */
+            transform: translateX(4px);
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .company-logo {
+            max-height: 60px; /* Adjust as needed */
+            margin-bottom: 1.5rem; /* Space below logo */
+        }
+
+        /* Dark mode specific styles */
+        .dark .hero-section {
+            /* The animated gradient should work well for dark mode too, but you can adjust if needed */
+             color: white;
+        }
+        .dark .hero-section .gradient-text {
+             background: linear-gradient(to right, #ffffff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dark body {
+            background-color: #111827; /* Dark background for body */
+            color: #d1d5db; /* Lighter default text for dark mode */
+        }
+        .dark .feature-item {
+            background-color: #1f2937; /* Darker background for feature items */
+            border-color: #374151;
+        }
+        .dark .feature-item:hover {
+            background-color: #374151; /* Slightly different hover for dark mode */
+        }
+        .dark .text-gray-900 { color: #f9fafb; }
+        .dark .text-gray-800 { color: #e5e7eb; }
+        .dark .text-gray-700 { color: #d1d5db; }
+        .dark .text-gray-600 { color: #9ca3af; }
+        .dark .text-gray-500 { color: #6b7280; }
+        .dark .border-gray-200 { border-color: #374151; }
+        .dark .app-image {
+            border-color: #4b5563;
+        }
+        .dark footer {
+            background-color: #1f2937;
+            border-color: #374151;
+        }
+
+    </style>
+</head>
+<body class="antialiased"> <section class="hero-section">
+        <div class="container mx-auto px-6 py-12 text-center">
+            <img src="orion-logo.png" alt="Orion VLSI Technologies Logo" class="company-logo mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/200x60/FFFFFF/CC0000?text=Logo+Not+Found';">
+
+            <h1 class="text-4xl font-bold md:text-5xl lg:text-6xl">
+                <span class="gradient-text">✦ Orion Disassembler:</span> Your Essential Hex & RISC-V Toolkit
+            </h1>
+            <p class="mt-6 text-lg md:text-xl max-w-3xl mx-auto">
+                Simplify Hex Editing, Decode RISC-V Instructions, and Verify OSRV Core Support—All in One Fast Desktop App.
+            </p>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-800">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="app-image-container order-1 md:order-2 flex justify-center">
+                <img src="desktop-app-window.png" alt="Orion Disassembler App Interface" class="app-image max-w-md w-full h-auto rounded-xl shadow-2xl border-4 border-gray-200 dark:border-gray-700" onerror="this.onerror=null;this.src='https://placehold.co/600x400/E2E8F0/4A5568?text=App+Screenshot';">
+            </div>
+
+            <div class="order-2 md:order-1">
+                <h2 class="text-3xl font-semibold text-gray-800 dark:text-white mb-6">Key Features:</h2>
+                <ul class="space-y-4 mb-8">
+                    <li class="feature-item flex items-start p-4 rounded-lg transition-all duration-200 ease-in-out">
+                        <svg class="feature-icon text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m-15.357-2a8.001 8.001 0 0015.357 2M9 15h4.582m0 0V9a2.25 2.25 0 014.5 0v6m0 0v2.25A2.25 2.25 0 0115.75 21H9.75A2.25 2.25 0 017.5 18.75V15m0 0h1.5m0 0V9a2.25 2.25 0 00-4.5 0v6m0 0v2.25A2.25 2.25 0 007.5 21h2.25"></path></svg>
+                        <div>
+                            <h3 class="font-semibold text-gray-700 dark:text-gray-200">Instant Hex Manipulation</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Reverse byte order, clean up hex strings.</p>
+                        </div>
+                    </li>
+                    <li class="feature-item flex items-start p-4 rounded-lg transition-all duration-200 ease-in-out">
+                        <svg class="feature-icon text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                        <div>
+                            <h3 class="font-semibold text-gray-700 dark:text-gray-200">Format Conversion</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Toggle between hex, binary, and 0x formats.</p>
+                        </div>
+                    </li>
+                    <li class="feature-item flex items-start p-4 rounded-lg transition-all duration-200 ease-in-out">
+                        <svg class="feature-icon text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <div>
+                            <h3 class="font-semibold text-gray-700 dark:text-gray-200">RISC-V Instruction Decoder</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Translate 32-bit hex to readable RISC-V assembly.</p>
+                        </div>
+                    </li>
+                    <li class="feature-item flex items-start p-4 rounded-lg transition-all duration-200 ease-in-out">
+                        <svg class="feature-icon text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <div>
+                            <h3 class="font-semibold text-gray-700 dark:text-gray-200">OSRV Core Support Check</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Validate instruction compatibility with OSRV cores.</p>
+                        </div>
+                    </li>
+                    <li class="feature-item flex items-start p-4 rounded-lg transition-all duration-200 ease-in-out">
+                        <svg class="feature-icon text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        <div>
+                            <h3 class="font-semibold text-gray-700 dark:text-gray-200">Customizable UI</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Pin window, adjust opacity, switch between light/dark mode.</p>
+                        </div>
+                    </li>
+                    <li class="feature-item flex items-start p-4 rounded-lg transition-all duration-200 ease-in-out">
+                        <svg class="feature-icon text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        <div>
+                            <h3 class="font-semibold text-gray-700 dark:text-gray-200">Clipboard Integration</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Auto-copy output for fast pasting elsewhere.</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="mt-10 text-center md:text-left">
+                    <a href="app.exe" download class="download-button inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 px-10 rounded-lg text-lg focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:focus:ring-indigo-800">
+                        Download Orion Disassembler
+                    </a>
+                    <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">Available for Windows, macOS, and Linux.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+            <p>&copy; <span id="currentYear"></span> Orion Disassembler. All rights reserved.</p>
+            <p class="text-sm">Designed to make your hex and RISC-V tasks easier.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript to set the current year in the footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Optional: Dark mode toggle (basic example, you might want a more robust solution)
+        // const toggleDarkModeButton = document.getElementById('darkModeToggler'); // Assuming you add a button with this ID
+        // if (toggleDarkModeButton) {
+        //    toggleDarkModeButton.addEventListener('click', () => {
+        //        document.documentElement.classList.toggle('dark');
+        //        // Optionally, save preference to localStorage
+        //        if (document.documentElement.classList.contains('dark')) {
+        //            localStorage.setItem('theme', 'dark');
+        //        } else {
+        //            localStorage.setItem('theme', 'light');
+        //        }
+        //    });
+        // }
+
+        // // Check for saved theme preference on load
+        // if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        //    document.documentElement.classList.add('dark');
+        // } else {
+        //    document.documentElement.classList.remove('dark');
+        // }
+    </script>
+
+</body>
+</html>
